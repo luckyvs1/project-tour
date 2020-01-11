@@ -1,0 +1,38 @@
+{
+    "name": "react-express",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "@babel/core": "latest",
+        "@babel/node": "latest",
+        "@babel/plugin-proposal-class-properties": "latest",
+        "@babel/preset-env": "latest",
+        "@babel/preset-react": "latest",
+        "@material-ui/core": "latest",
+        "axios": "^0.19.1",
+        "babel-loader": "latest",
+        "body-parser": "^1.19.0",
+        "cross-env": "latest",
+        "dotenv": "^8.2.0",
+        "express": "latest",
+        "knex": "^0.20.7",
+        "nodemon": "latest",
+        "npm-run-all": "latest",
+        "pg": "^7.17.0",
+        "react": "latest",
+        "react-dom": "latest",
+        "react-router-dom": "^5.1.2",
+        "webpack": "latest",
+        "webpack-cli": "latest"
+    },
+    "scripts": {
+        "start": "webpack -w & nodemon --exec yarn babel-node -- server.js",
+        "build": "webpack -w",
+        "serve": "nodemon --ignore ./build --exec babel-node -- server.js",
+        "production": "cross-env NODE_ENV=production npm start"
+    },
+    "devDependencies": {
+        "eslint": "^6.8.0",
+        "eslint-plugin-react": "^7.17.0"
+    }
+}
