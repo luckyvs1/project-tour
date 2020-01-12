@@ -29,9 +29,23 @@ class Tour extends React.Component {
 
     getTheTour = () => {
         console.log(this.state.selectedMarkers);
+        console.log(JSON.stringify(this.state.selectedMarkers.toString));
         this.setState({
-            flowPosition: 3
+            flowPosition: 3,
+            interestsLoading: true
         });
+        console.log('/locations?origin=' + this.state.startMarker.lat + ',' + this.state.startMarker.lat); 
+        console.log('&destination=' + this.state.endMarkerCoords.lat + ',' + this.state.endMarkerCoords.lng);
+        console.log('&waypoints=' + JSON.stringify(this.state.selectedMarkers.toString));
+        
+        axios.get(
+            '/trip?origin=' + this.state.startMarker.lat + ',' + this.state.startMarker.lat + 
+            '&destination=' + this.state.endMarkerCoords.lat + ',' + this.state.endMarkerCoords.lng + 
+            '&waypoints=' + JSON.stringify(this.state.selectedMarkers)
+        ).then(response => {
+            console.log('Good response', response);
+            this.setState({polyLines: response.output, interestsLoading: false});
+        }).catch(error => console.log(error));
     }
 
     setEndLocation = (newEndLocation) => {
@@ -127,6 +141,7 @@ class Tour extends React.Component {
                     markers={this.state.markers}
                     selectedMarkers={this.state.selectedMarkers}
                     onMarkerClick={this.onMarkerClick}
+                    polyLines={this.state.polyLines}
                 /> : null
                 }
             </PageWrapper>

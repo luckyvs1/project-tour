@@ -26,7 +26,7 @@ export default function ButtonAppBar() {
         <Toolbar>
           <RoomIcon/>
           <Typography variant="h5" className={classes.title}>
-            Adventure Advisor
+            TravelMix
           </Typography>
         </Toolbar>
       </AppBar>

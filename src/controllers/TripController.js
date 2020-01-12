@@ -17,10 +17,15 @@ export default class TripController {
         // const origin = "49.262701,-123.245545"
         // const destination =  "49.278338,-122.920043"
         // const waypoints = [[49.253092, -123.009906],[49.264861, -123.070159]])
-
         const origin = req.query.origin
         const destination = req.query.destination
-        const waypoints = JSON.parse(req.query.waypoints)
+        const waypointInputs = JSON.parse(req.query.waypoints)
+        let waypoints =[]
+
+        for (let input of waypointInputs){
+            waypoints.push([input.lat, input.lng])
+        }
+        console.log(waypoints)
         const googleMaps = req.app.get('googleMaps')
 
         const directions = await googleMaps.directions(
@@ -41,8 +46,9 @@ export default class TripController {
             .catch((err) => {
             console.log(err);
         });
-
+        // console.log(directions)
         const durationArray = []
+        console.log(directions)
         const legsArray = directions.routes[0].legs;
 
         const waypoint_order = directions.routes[0].waypoint_order
@@ -89,6 +95,7 @@ export default class TripController {
         });
 
         const encodedPolyline = directions.routes[0].overview_polyline.points
+        console.log(encodedPolyline)
 
         let totalDurationInSecs = 0
 
@@ -101,6 +108,7 @@ export default class TripController {
               durationArray: durationArray,
               totalDurationInSecs: totalDurationInSecs
         }
+        console.log(response)
 
         res.send(response)
     }

@@ -9,7 +9,7 @@ class App extends Component {
     render() {
         return (
             <div>
-                <ButtonAppBar menuTitle="Adventure Advisor" menuSubTitle="The Travel Plan Engine"/>
+                <ButtonAppBar/>
                 <Switch>
                     <Route path="/tour/:location" render={() => <Tour/>}/>
                     <Route render={() => <LocationSearchMenu/>}/>

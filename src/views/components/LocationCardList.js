@@ -16,7 +16,9 @@ class LocationCardList extends React.Component {
             'Tokyo',
             'Berlin',
             'Manila',
-            'Beijing'
+            'Beijing',
+            'Antalya',
+            'Kuala Lumpur'
         ]
         return (
             <Grid
