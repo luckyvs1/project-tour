@@ -5,15 +5,18 @@ import Grid from '@material-ui/core/Grid'
 class LocationCardList extends React.Component {
     render() {
         const locations = [
-            'Surrey',
-            'Mongolia',
-            'China',
+            'Bangkok',
+            'London',
+            'Paris',
             'NYC Street',
             'California',
-            'Kathmandu',
-            'Burnaby City',
+            'Singapore',
+            'Whistler',
             'Vancouver',
-            'Whistler Mountain'
+            'Tokyo',
+            'Berlin',
+            'Manila',
+            'Beijing'
         ]
         return (
             <Grid
