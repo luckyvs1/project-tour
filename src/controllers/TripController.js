@@ -1,5 +1,5 @@
 export default class TripController {
-    trip(req, res) {
+    async trip(req, res) {
         /*
             Point 1: UBC
             [49.262701, -123.245545]
@@ -14,12 +14,20 @@ export default class TripController {
             [49.253092, -123.009906]
 
         */
-
-        req.app.get('googleMaps').directions(
+        const origin = req.body.origin
+        const destination =  req.body.destination
+        const waypoints = req.body.waypoints
+        const googleMaps = req.app.get('googleMaps')
+        
+        const directions = await googleMaps.directions(
             {
-                origin: "49.262701,-123.245545",
-                destination: "49.278338,-122.920043",
-                waypoints: [[49.253092, -123.009906],[49.264861, -123.070159]],
+                // origin: "49.262701,-123.245545",
+                // destination: "49.278338,-122.920043",
+                // waypoints: [[49.253092, -123.009906],[49.264861, -123.070159]],
+                // optimize: true
+                origin: origin,
+                destination: destination,
+                waypoints: waypoints,
                 optimize: true
             })
         .asPromise()
