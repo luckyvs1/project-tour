@@ -10,7 +10,10 @@ import TextField from '@material-ui/core/TextField';
 class LocationSearchInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { address: '' };
+    this.state = { 
+        address: '',
+        style: {}
+    };
   }
  
   handleChange = address => {
@@ -20,7 +23,11 @@ class LocationSearchInput extends React.Component {
   handleSelect = address => {
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => console.log('Success', latLng))
+      .then(latLng => {
+          console.log('Success', latLng);
+          this.setState({ style: {borderColor: 'green'} })
+          this.props.onChange(latLng);
+        })
       .catch(error => console.error('Error', error));
   };
  
@@ -34,6 +41,7 @@ class LocationSearchInput extends React.Component {
                 value={this.state.address}
                 onChange={this.handleChange}
                 onSelect={this.handleSelect}
+                onBlur={this.handleSelect}
             >
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                 <div>
@@ -45,6 +53,7 @@ class LocationSearchInput extends React.Component {
                         label={this.props.label}
                         {...getInputProps({
                         })}
+                        style={this.state.style}
                     />
                     <div className="autocomplete-dropdown-container">
                     {loading && <div>Loading...</div>}
