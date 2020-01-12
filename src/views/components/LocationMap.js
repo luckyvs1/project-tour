@@ -13,17 +13,19 @@ const LocationMap = compose(
   withScriptjs,
   withGoogleMap
 )((props) =>{
+  let defaultCenter = { lat: -34.397, lng: 150.644 }
+  if(props.startMarker) defaultCenter=props.startMarker;
   console.log(props);
   return(
   <GoogleMap
     defaultZoom={8}
-    defaultCenter={{ lat: -34.397, lng: 150.644 }}
+    defaultCenter={defaultCenter}
     onClick={props.onMapClick}
   >
       <Polyline path={[{ lat: -34.397, lng: 150.644 }, { lat: -35.397, lng: 151.644 }]}/>
-    {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} />}
+    {props.isMarkerShown && <Marker position={defaultCenter} onClick={props.onMarkerClick} />}
     {props.markers.map((marker) => {
-        <Marker position={{lat: marker.lat, lng: marker.lng}}></Marker>
+        return <Marker key={marker} position={marker}></Marker>
     })}
     <Polyline options={{
        strokeColor: '#0088FF',

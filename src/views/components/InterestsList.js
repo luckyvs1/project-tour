@@ -20,7 +20,7 @@ class InterestsList extends React.Component {
 
     render() {
         return (
-            <Container align="center">
+            <Container>
                 <SearchBar onSubmit={this.handleSelect} onChange={(e) => this.setState({ interestEntry: e.target.value })} label="Add interests" question="What are your interests?"></SearchBar>
                 <Grid direction="row" justify="center" container>
                     {this.state.interests.map(interest => (

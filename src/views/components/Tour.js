@@ -17,6 +17,7 @@ class Tour extends React.Component {
         flowPosition: 0,
         endLocation: "",
         markers: [],
+        startMarker: null,
         selectedMarkers: [],
         polyLines: []
     }
@@ -55,11 +56,12 @@ class Tour extends React.Component {
         }).catch(error => console.log(error));
     }
 
-    getLatLng = (searchTerm) => {
+    getFirstMarker = (searchTerm) => {
         geocodeByAddress(searchTerm)
             .then(results => getLatLng(results[0]))
             .then(latLng => {
-                // console.log('Success', latLng);
+                console.log('GOT MARKER!');
+                this.setState({startMarker: latLng})
             })
             .catch(error => console.error('GETLATLANG ERROR', error));
     } 
@@ -75,20 +77,23 @@ class Tour extends React.Component {
         } else if (this.state.flowPosition == 3) {
             CurrentQuestion = <Container align="center"><Typography variant="h5">Have fun!</Typography></Container>;
         }
-
+        
+        if(!this.state.startMarker) this.getFirstMarker(this.props.match.params.location);
+        console.log(this.props);
         return (
             <PageWrapper>
                 {CurrentQuestion}
                 <br/>
-                {console.log(this.props.match.params.location)}
-                <LocationMap 
+                {this.state.startMarker != null ? <LocationMap 
                     isMarkerShown
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `400px` }} />}
                     mapElement={<div style={{ height: `100%` }} />}
+                    startMarker={this.state.startMarker}
                     markers={this.state.markers}
                     selectedMarkers={this.state.selectedMarkers}
-                />
+                /> : null
+                }
             </PageWrapper>
         );
     }
