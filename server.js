@@ -13,6 +13,9 @@ import theme from './public/style/theme';
 
 //environment
 const ENV = process.env.ENV || "development";
+// Google API Key
+const KEY = process.env.GOOGLE_API_KEY || "development";
+
 
 //middleware
 import bodyParser from "body-parser";
@@ -20,7 +23,13 @@ import bodyParser from "body-parser";
 //database
 import knexConfig from "./knexfile";
 import knex from "knex";
-knex(knexConfig[ENV])
+knex(knexConfig[ENV]);
+
+// google map API
+const googleMaps = require('@google/maps').createClient({
+    key: KEY,
+    Promise: Promise
+});
 
 function renderFullPage(html, css) {
     return `
@@ -34,7 +43,6 @@ function renderFullPage(html, css) {
             </head>
             <body>
                 <script async src="build/bundle.js"></script>
-                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places"></script>
                 <div id="root">${html}</div>
             </body>
         </html>
@@ -75,6 +83,8 @@ app.use('/build', express.static('build'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+app.set('googleMaps', googleMaps)
 // routing
 // app.get("/", (req, res) => res.render("index"));
 
