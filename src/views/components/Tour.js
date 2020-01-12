@@ -7,8 +7,47 @@ import PlacesAutocomplete, {
     getLatLng,
   } from 'react-places-autocomplete';
 import PageWrapper from './PageWrapper';
+import MarkerSelect from './MarkerSelect';
+import SetEndLocation from './SetEndLocation';
+import Axios from '../../endpoints/backend';
 
 class Tour extends React.Component {
+    state = {
+        flowPosition: 0,
+        endLocation: "",
+        interests: [],
+        markers: [],
+        selectedMarkers: [],
+        polyLines: []
+    }
+
+    getTour = () => {
+        Axios.get('?start=' + this.props.startLocation +
+            '&end=' + this.state.endLocation +
+            '&interests=' + JSON.stringify((this.state.interests))
+        );
+    }
+
+    setEndLocation = (newEndLocation) => {
+        this.setState({
+            flowPosition: 1,
+            endLocation: newEndLocation
+        });
+    }
+
+    setInterests = (interests) => {
+        this.setState({
+            flowPosition: 2,
+            interests: interests
+        });
+    }
+
+    getTour = () => {
+        this.setState({
+            flowPosition: 3
+        });
+    }
+
     getLatLng = (searchTerm) => {
         geocodeByAddress(searchTerm)
             .then(results => getLatLng(results[0]))
@@ -19,9 +58,20 @@ class Tour extends React.Component {
     } 
 
     render() {
+        let CurrentQuestion = null;
+        if (this.state.flowPosition === 0) {
+            CurrentQuestion = <SetEndLocation doSelect={this.setEndLocation}/>;
+        } else if (this.state.flowPosition === 1) {
+            CurrentQuestion = <InterestsList doFinish={this.setInterests}/>
+        } else if (this.state.flowPosition == 2) {
+            CurrentQuestion = <MarkerSelect doFinish={this.getTour}/>
+        } else if (this.state.flowPosition == 3) {
+            CurrentQuestion = <div style={{alignContent: "center"}}><h1>Have fun!</h1></div>;
+        }
+
         return (
             <PageWrapper>
-                <InterestsList/>
+                {CurrentQuestion}
                 <br/>
                 {console.log(this.getLatLng(this.props.match.params.location))}
                 <LocationMap 
