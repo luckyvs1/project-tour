@@ -24,7 +24,7 @@ class App extends Component {
                 <Box paddingX={10}>
                     <Card>
                         <CardContent>
-                              <SearchBar label="Search" question="Where should your tour start?"/>
+                              <SearchBar label="Or pick your own location!" question="Where should your tour start?"/>
                               <LocationCardList/>
                         </CardContent>
                     </Card>
