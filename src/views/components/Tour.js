@@ -23,6 +23,7 @@ class Tour extends React.Component {
     }
 
     getTheTour = () => {
+        console.log(this.state.selectedMarkers);
         this.setState({
             flowPosition: 3
         });
@@ -64,7 +65,23 @@ class Tour extends React.Component {
                 this.setState({startMarker: latLng})
             })
             .catch(error => console.error('GETLATLANG ERROR', error));
-    } 
+    }
+    
+    onMarkerClick = (clickedMarker) => {
+        let markers = [...this.state.markers];
+        markers = markers.map(marker => {
+            if(marker.lat === clickedMarker.lat && marker.lng === clickedMarker.lng) {
+                marker.label = "✔";
+            }
+            return marker;
+        })
+        this.setState({
+            markers: markers,
+            selectedMarkers: [...this.state.selectedMarkers, clickedMarker]
+        })
+        console.log('marker clicked');
+        marker.label="Clicked";
+    }
 
     render() {
         let CurrentQuestion = null;
@@ -92,6 +109,7 @@ class Tour extends React.Component {
                     startMarker={this.state.startMarker}
                     markers={this.state.markers}
                     selectedMarkers={this.state.selectedMarkers}
+                    onMarkerClick={this.onMarkerClick}
                 /> : null
                 }
             </PageWrapper>

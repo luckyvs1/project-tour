@@ -23,9 +23,9 @@ const LocationMap = compose(
     onClick={props.onMapClick}
   >
       <Polyline path={[{ lat: -34.397, lng: 150.644 }, { lat: -35.397, lng: 151.644 }]}/>
-    {props.isMarkerShown && <Marker position={defaultCenter} onClick={props.onMarkerClick} />}
+    {props.isMarkerShown && <Marker position={defaultCenter} label="Start"/>}
     {props.markers.map((marker) => {
-        return <Marker key={marker} position={marker}></Marker>
+        return <Marker label={marker.label || ''} key={marker} position={marker} onClick={() => props.onMarkerClick(marker)}></Marker>
     })}
     <Polyline options={{
        strokeColor: '#0088FF',
