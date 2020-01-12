@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Card, CardContent, CardMedia } from '@material-ui/core';
+import Image from 'material-ui-image'
 import unsplash from '../../endpoints/unsplash';
 
 class LocationListItem extends React.Component {
@@ -24,8 +25,7 @@ class LocationListItem extends React.Component {
         return (
             <Card variant="outlined" style={{width: '250px', height: '150px'}}>
                 <CardMedia
-                    children={<img src={this.state.image}/>}
-                    title="Paella dish"
+                    children={<Image src={this.state.image} aspectRatio={3/2}></Image>}
                 />
             </Card>
         );
