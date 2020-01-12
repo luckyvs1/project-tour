@@ -38,6 +38,7 @@
     },
     "devDependencies": {
         "@google/maps": "^1.0.2",
+        "@mapbox/polyline": "^1.1.0",
         "@pirxpilot/google-polyline": "^3.0.1",
         "eslint": "^6.8.0",
         "eslint-plugin-react": "^7.17.0"
