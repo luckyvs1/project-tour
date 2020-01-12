@@ -2,6 +2,11 @@ import React from 'react';
 import { withRouter } from "react-router-dom";
 import InterestsList from './InterestsList';
 import LocationMap from './LocationMap';
+import PlacesAutocomplete, {
+    geocodeByAddress,
+    getLatLng,
+  } from 'react-places-autocomplete';
+import PageWrapper from './PageWrapper';
 import MarkerSelect from './MarkerSelect';
 import SetEndLocation from './SetEndLocation';
 import Axios from '../../endpoints/backend';
@@ -43,6 +48,15 @@ class Tour extends React.Component {
         });
     }
 
+    getLatLng = (searchTerm) => {
+        geocodeByAddress(searchTerm)
+            .then(results => getLatLng(results[0]))
+            .then(latLng => {
+                console.log('Success', latLng);
+            })
+            .catch(error => console.error('Error', error));
+    } 
+
     render() {
         let CurrentQuestion = null;
         if (this.state.flowPosition === 0) {
@@ -56,11 +70,17 @@ class Tour extends React.Component {
         }
 
         return (
-            <div>
+            <PageWrapper>
                 {CurrentQuestion}
-                {console.log(this.props.match.params.location)}
-                <LocationMap />
-            </div>
+                <br/>
+                {console.log(this.getLatLng(this.props.match.params.location))}
+                <LocationMap 
+                    isMarkerShown
+                    loadingElement={<div style={{ height: `100%` }} />}
+                    containerElement={<div style={{ height: `400px` }} />}
+                    mapElement={<div style={{ height: `100%` }} />}
+                />
+            </PageWrapper>
         );
     }
 }

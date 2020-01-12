@@ -1,7 +1,7 @@
 import React from "react"
 import { compose, withProps } from "recompose"
-import { Polyline } from "react-google-maps";
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polyline } from "react-google-maps"
+
 
 const LocationMap = compose(
   withProps({
@@ -24,8 +24,12 @@ const LocationMap = compose(
   >
       <Polyline path={[{ lat: -34.397, lng: 150.644 }, { lat: -35.397, lng: 151.644 }]}/>
     {props.isMarkerShown && <Marker position={{ lat: -34.397, lng: 150.644 }} onClick={props.onMarkerClick} />}
+    <Polyline options={{
+       strokeColor: '#0088FF',
+       strokeWeight: 6,
+       strokeOpacity: 0.6
+   }} path={[{ lat: -34.397, lng: 150.644 }, { lat: -35.397, lng: 151.644 }]} />
   </GoogleMap>
 )
-
 
 export default LocationMap
