@@ -4,7 +4,6 @@ import LocationsHelper from '../helpers/LocationsHelper'
 export default class LocationsController {
 
     async getLocations(req, res) {
-
         const helper = new LocationsHelper();
 
         //const startLocation = '8888 University Dr, Burnaby, BC';
@@ -13,8 +12,8 @@ export default class LocationsController {
 
         const startLocation = req.query.start
         const endLocation = req.query.end
-        const interests = req.query.interests
-        
+        const interests = req.query.interests.split(',')
+
         // google maps API
         const googleMaps = req.app.get('googleMaps')
         const resultLimit = 5;
