@@ -15,6 +15,9 @@ import LocationSearchInput from './components/LocationSearchInput';
 import ButtonAppBar from './components/ButtonAppBar';
 import SearchBar from './components/SearchBar';
 import { Container } from '@material-ui/core';
+import ButtonAppBar from './components/ButtonAppBar';
+import LocationSearchMenu from './components/LocationSearchMenu';
+import BottomNavigationFooter from './components/BottomNavigationFooter';
 
 class App extends Component {
     state = {
@@ -76,9 +79,7 @@ class App extends Component {
 
     render() {
         return (
-            <Box>
-                <ButtonAppBar menuTitle="Adventure Advisor" menuSubTitle="The Travel Plan Engine"/>
-                <br />
+            <br />
                 <Box paddingX={10}>
                     <Card>
                         <CardContent>
@@ -100,6 +101,14 @@ class App extends Component {
                     </Card>
                 </Box>
             </Box>
+            <div>
+                <ButtonAppBar menuTitle="Adventure Advisor" menuSubTitle="The Travel Plan Engine"/>
+                <Switch>
+                    <Route path="/tour" exact render={() => <div/>}/>
+                    <Route render={() => <LocationSearchMenu/>}/>
+                </Switch>
+                <Route path="/" render={() => <BottomNavigationFooter/>}/>
+            </div>
         );
     }
 }

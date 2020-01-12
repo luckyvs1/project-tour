@@ -14,9 +14,9 @@ class SearchBar extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div style={{padding: "0px 20px 20px 20px"}}>
                 <Container maxWidth="sm">
-                    <Typography variant="h5" align="center">
+                    <Typography variant="h6" align="center">
                         {this.props.question}
                     </Typography>
                     <form onSubmit={this.onFormSubmit} className="ui form">
