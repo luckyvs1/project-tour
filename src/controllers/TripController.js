@@ -79,7 +79,6 @@ export default class TripController {
         }
         console.log(output)
 
-        const waypoint_order = directions.routes[0].waypoint_order
         let custom_order = []
         //custom_order.push({"lat": origin.split[","][0], "lng": origin.split[","][1]})
         custom_order.push(origin)
