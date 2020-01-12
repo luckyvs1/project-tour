@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Home from './components/Home';
-import Login from './components/Auth/Login';
 import { Switch, Route, withRouter } from "react-router-dom";
+import LocationCard from './components/LocationCard';
+import LocationCardList from './components/LocationCardList';
 
 
 class App extends Component {
@@ -11,10 +11,14 @@ class App extends Component {
 
     render() {
         return (
-            <Switch>
-                <Route exact path="/" render={() => <Home />}/>
-                <Route path="/login" render={() => <Login />}/>
-            </Switch>
+            // Will need later
+            // <Switch>
+            //     <Route exact path="/" render={() => <Home />}/>
+            //     <Route path="/login" render={() => <Login />}/>
+            // </Switch>
+            <React.Fragment>
+                <LocationCardList/>
+            </React.Fragment>
         );
     }
 }
