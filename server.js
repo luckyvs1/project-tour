@@ -13,6 +13,8 @@ import theme from './public/style/theme';
 
 //environment
 const ENV = process.env.ENV || "development";
+// Google API Key
+const KEY = process.env.GOOGLE_API_KEY
 
 //middleware
 import bodyParser from "body-parser";
@@ -20,7 +22,13 @@ import bodyParser from "body-parser";
 //database
 import knexConfig from "./knexfile";
 import knex from "knex";
-knex(knexConfig[ENV])
+knex(knexConfig[ENV]);
+
+// google map API
+const googleMaps = require('@google/maps').createClient({
+    key: KEY,
+    Promise: Promise
+});
 
 function renderFullPage(html, css) {
     return `
@@ -75,12 +83,19 @@ app.use('/build', express.static('build'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+app.set('googleMaps', googleMaps)
 // routing
 // app.get("/", (req, res) => res.render("index"));
 
 // auth route
 import auth from "./src/routes/auth"
+import trip from "./src/routes/trip"
 app.use("/auth", auth)
+app.use("/", trip)
+
+import locations from "./src/routes/locations"
+app.use("/", locations)
 
 // This is fired every time the server-side receives a request.
 app.use(handleRender);
