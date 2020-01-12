@@ -5,33 +5,21 @@ import Box from '@material-ui/core/Box';
 import SearchBar from './SearchBar';
 import LocationCardList from './LocationCardList';
 import LocationSearchInput from './LocationSearchInput';
+import { withRouter } from "react-router-dom";
 
 class LocationSearchMenu extends React.Component {
     state = {
-        start: {
-            lat: null,
-            lng: null
-        }
+        locationString: ''
     };
     
     onLsiSelectStart = (location) => {
         this.setState({
-            start: {
-                lat: location.lat,
-                lng: location.lng
-            }
+            locationString: location
         });
+
+        this.props.history.push('/tour/' + location);
     };
 
-    onLsiSelectEnd = (location) => {
-        this.setState({
-            end: {
-                lat: location.lat,
-                lng: location.lng
-            }
-        });
-    };
-        
     render() {
         return (
             <Box paddingX={10} pb={1}>
@@ -50,4 +38,4 @@ class LocationSearchMenu extends React.Component {
     }
 }
 
-export default LocationSearchMenu;
+export default withRouter(LocationSearchMenu);
