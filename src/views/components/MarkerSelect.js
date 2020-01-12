@@ -1,17 +1,25 @@
 import React from 'react';
-import { Typography, Button, Container } from '@material-ui/core';
+import { Typography, Button, Container, CircularProgress } from '@material-ui/core';
 
 class MarkerSelect extends React.Component {
     render() {
-        return (
-            <Container align= "center">
-                <Typography variant="h5">Select all of the places you'd like to visit</Typography>
-                <br/>
-                <Button onClick={this.props.doFinish} variant="contained" color="primary" style={{alignContent: "center"}}>
-                    Build My Tour
-                </Button>
-            </Container>
-        )
+        if(!this.props.interestsLoading) {
+            return (
+                <Container align= "center">
+                    <Typography variant="h5">Select the places you would like to visit</Typography>
+                    <br/>
+                    <Button onClick={this.props.doFinish} variant="contained" color="primary" style={{alignContent: "center"}}>
+                        Build My Tour
+                    </Button>
+                </Container>
+            );
+        } else{
+            return (
+                <Container align="center">
+                    <CircularProgress />
+                </Container>
+            );
+        }
     }
 }
 
