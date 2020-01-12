@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 // import Home from './components/Home';
 // import Login from './components/Auth/Login';
 import { Switch, Route, withRouter } from "react-router-dom";
+import { withScriptjs } from 'react-google-maps';
+
 import Icon from '@material-ui/core/Icon';
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Box from '@material-ui/core/Box'
 import LocationCardList from './components/LocationCardList';
+import LocationSearchInput from './components/LocationSearchInput';
 
 import ButtonAppBar from './components/ButtonAppBar';
 import SearchBar from './components/SearchBar';
@@ -24,12 +27,14 @@ class App extends Component {
                 <Box paddingX={10}>
                     <Card>
                         <CardContent>
-                              <SearchBar label="Or pick your own location!" question="Where should your tour start?"/>
-                              <LocationCardList/>
+                            <LocationSearchInput
+                                question="Where should your tour start?" 
+                                label="Search"
+                            />
+                            <LocationCardList />
                         </CardContent>
                     </Card>
                 </Box>
-          
             </Box>
             // <Switch>
             //     <Route exact path="/" render={() => <Home />}/>

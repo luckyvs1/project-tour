@@ -22,6 +22,8 @@
         "pg": "^7.17.0",
         "react": "latest",
         "react-dom": "latest",
+        "react-google-maps": "^9.4.5",
+        "react-places-autocomplete": "^7.2.1",
         "react-router-dom": "^5.1.2",
         "webpack": "latest",
         "webpack-cli": "latest"
