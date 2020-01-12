@@ -1,15 +1,16 @@
 import React from 'react';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, Container } from '@material-ui/core';
 
 class MarkerSelect extends React.Component {
     render() {
         return (
-            <div style={{padding: "20px 20px 20px 20px"}}>
-                <Typography variant="h5">Select all of the places youd like to visit</Typography>
+            <Container align= "center">
+                <Typography variant="h5">Select all of the places you'd like to visit</Typography>
+                <br/>
                 <Button onClick={() => this.props.doFinish()} variant="contained" color="primary" style={{alignContent: "center"}}>
-                    Done
+                    Build My Tour
                 </Button>
-            </div>
+            </Container>
         )
     }
 }

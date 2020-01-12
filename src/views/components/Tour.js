@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
+import { Container, Typography } from '@material-ui/core'; 
 import InterestsList from './InterestsList';
 import LocationMap from './LocationMap';
 import PlacesAutocomplete, {
@@ -66,7 +67,7 @@ class Tour extends React.Component {
         } else if (this.state.flowPosition == 2) {
             CurrentQuestion = <MarkerSelect doFinish={this.getTour}/>
         } else if (this.state.flowPosition == 3) {
-            CurrentQuestion = <div style={{alignContent: "center"}}><h1>Have fun!</h1></div>;
+            CurrentQuestion = <Container align="center"><Typography variant="h5">Have fun!</Typography></Container>;
         }
 
         return (

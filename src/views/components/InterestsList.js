@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchBar from './SearchBar';
-import { Typography, Card, CardContent, CardMedia, Grid, Button} from '@material-ui/core';
+import { Typography, Card, Container, CardContent, CardMedia, Grid, Button} from '@material-ui/core';
 
 class InterestsList extends React.Component {
     state = {
@@ -20,7 +20,7 @@ class InterestsList extends React.Component {
 
     render() {
         return (
-            <div style={{justifyContent: 'center'}}>
+            <Container align="center">
                 <SearchBar onSubmit={this.handleSelect} onChange={(e) => this.setState({ interestEntry: e.target.value })} label="Add interests" question="What are your interests?"></SearchBar>
                 <Grid direction="row" justify="center" container>
                     {this.state.interests.map(interest => (
@@ -36,12 +36,13 @@ class InterestsList extends React.Component {
                         </Card>
                     ))}
                 </Grid>
-                <div style={{justifyContent: 'center'}}>
+                <Container align="center">
+                    <br/>
                     <Button onClick={() => this.props.doFinish(this.state.interests)} variant="contained" color="primary" style={{justifyContent: 'center'}}>
-                    Done
+                        Submit
                     </Button>
-                </div>
-            </div>
+                </Container>
+            </Container>
         );
     }
 }
