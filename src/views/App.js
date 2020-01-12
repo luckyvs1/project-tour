@@ -3,16 +3,9 @@ import React, {Component} from 'react';
 // import Login from './components/Auth/Login';
 import { Switch, Route, withRouter } from "react-router-dom";
 import { withScriptjs } from 'react-google-maps';
-
-import Icon from '@material-ui/core/Icon';
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Box from '@material-ui/core/Box'
-import LocationCardList from './components/LocationCardList';
-import LocationSearchInput from './components/LocationSearchInput';
-
 import ButtonAppBar from './components/ButtonAppBar';
-import SearchBar from './components/SearchBar';
+import LocationSearchMenu from './components/LocationSearchMenu';
+import BottomNavigationFooter from './components/BottomNavigationFooter';
 
 class App extends Component {
     constructor(props){
@@ -21,26 +14,14 @@ class App extends Component {
 
     render() {
         return (
-            <Box>
+            <div>
                 <ButtonAppBar menuTitle="Adventure Advisor" menuSubTitle="The Travel Plan Engine"/>
-                <br />
-                <Box paddingX={10}>
-                    <Card>
-                        <CardContent>
-                            <LocationSearchInput
-                                question="Where should your tour start?" 
-                                label="Search"
-                            />
-                            <LocationCardList />
-                        </CardContent>
-                    </Card>
-                </Box>
-            </Box>
-            // <Switch>
-            //     <Route exact path="/" render={() => <Home />}/>
-            //     <Route path="/login" render={() => <Login />}/>
-            // </Switch>
-            
+                <Switch>
+                    <Route path="/tour" exact render={() => <div/>}/>
+                    <Route render={() => <LocationSearchMenu/>}/>
+                </Switch>
+                <Route path="/" render={() => <BottomNavigationFooter/>}/>
+            </div>
         );
     }
 }
