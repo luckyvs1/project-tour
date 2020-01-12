@@ -14,24 +14,22 @@ class SearchBar extends React.Component {
 
 	render() {
 		return (
-			<div style={{padding: "0px 20px 20px 20px"}}>
-                <Container maxWidth="sm">
-                    <Typography variant="h6" align="center">
-                        {this.props.question}
-                    </Typography>
-                    <form onSubmit={this.onFormSubmit} className="ui form">
-                            <TextField 
-                                id="outlined-full-width" 
-                                label={this.props.label}
-                                fullWidth
-                                margin="normal"
-                                variant="outlined"
-                                value={this.state.term}
-                                onChange={(e) => this.setState({ term: e.target.value })} 
-                            />
-                    </form>
-                </Container>
-			</div>
+            <Container maxWidth="sm">
+                <Typography variant="h5" align="center">
+                    {this.props.question}
+                </Typography>
+                <form onSubmit={this.onFormSubmit} className="ui form">
+                        <TextField 
+                            id="outlined-full-width" 
+                            label={this.props.label}
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            value={this.state.term}
+                            onChange={(e) => this.setState({ term: e.target.value })} 
+                        />
+                </form>
+            </Container>
 		);
 	}
 }
