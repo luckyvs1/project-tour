@@ -44,7 +44,7 @@ class Tour extends React.Component {
             '&waypoints=' + JSON.stringify(this.state.selectedMarkers)
         ).then(response => {
             console.log('Good response', response);
-            this.setState({polyLines: response.output, interestsLoading: false});
+            this.setState({polyLines: response.data.output, interestsLoading: false});
         }).catch(error => console.log(error));
     }
 

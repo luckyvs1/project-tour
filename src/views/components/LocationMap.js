@@ -13,23 +13,31 @@ const LocationMap = compose(
   withScriptjs,
   withGoogleMap
 )((props) =>{
+
   let defaultCenter = { lat: -34.397, lng: 150.644 }
   if(props.startMarker) defaultCenter=props.startMarker;
-  console.log(props);
+  let allPolyLines = [];
+  if(props.polyLines && props.polyLines.length > 0) {
+    if(props.startMarker.lat && props.startMaker.lng) allPolyLines.push(<Polyline key={848438} path={[{lat: props.startMarker.lat, lng: props.startMarker.lng}, {lat: props.polyLines[0].lat, lng: props.polyLines[0].lng}]}/>);
+  for(let i = 0; i < props.polyLines.length - 1; i++) {
+      allPolyLines.push(<Polyline key={i} path={[{lat: props.polyLines[i].lat, lng: props.polyLines[i].lng}, {lat: props.polyLines[i + 1].lat, lng: props.polyLines[i + 1].lng}]}/>);
+  }
+  if(props.endMarkerCoords) allPolyLines.push(<Polyline key={'fever'} path={[{lat: props.polyLines[props.polyLines.length - 1].lat, lng: props.polyLines[props.polyLines.length - 1].lng}, {lat: props.endMarkerCoords.lat, lng: props.endMarkerCoords.lng}]}/>);
+  
+}
+console.log(allPolyLines);
   return(
   <GoogleMap
     defaultZoom={8}
     defaultCenter={defaultCenter}
     onClick={props.onMapClick}
   >
-      {props.polyLines ? props.polyLines.map((line, index) => (
-          <Polyline key={index} path={line}/>
-      )) : null}
     {props.isMarkerShown && <Marker position={defaultCenter} label="Start"/>}
-    {props.endMarkerCoords ? <Marker label="End" key={props.endMarkerCoords.lat + props.endMarkerCoords.lnd} position={props.endMarkerCoords}/> : null}
+    {props.endMarkerCoords ? <Marker label="End" key={props.endMarkerCoords.lat + props.endMarkerCoords.lng} position={props.endMarkerCoords}/> : null}
     {props.markers.map((marker) => {
         return <Marker label={marker.label || ''} key={marker} position={marker} onClick={() => props.onMarkerClick(marker)}></Marker>
     })}
+    {allPolyLines}
     <Polyline options={{
        strokeColor: '#0088FF',
        strokeWeight: 6,
