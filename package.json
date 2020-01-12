@@ -9,6 +9,7 @@
         "@babel/preset-env": "latest",
         "@babel/preset-react": "latest",
         "@material-ui/core": "latest",
+        "@material-ui/icons": "^4.5.1",
         "axios": "^0.19.1",
         "babel-loader": "latest",
         "body-parser": "^1.19.0",
@@ -21,6 +22,8 @@
         "pg": "^7.17.0",
         "react": "latest",
         "react-dom": "latest",
+        "react-google-maps": "^9.4.5",
+        "react-places-autocomplete": "^7.2.1",
         "react-router-dom": "^5.1.2",
         "webpack": "latest",
         "webpack-cli": "latest"

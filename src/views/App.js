@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
+// import Home from './components/Home';
+// import Login from './components/Auth/Login';
 import { Switch, Route, withRouter } from "react-router-dom";
-import LocationCard from './components/LocationCard';
-import LocationCardList from './components/LocationCardList';
-
+import { withScriptjs } from 'react-google-maps';
+import ButtonAppBar from './components/ButtonAppBar';
+import LocationSearchMenu from './components/LocationSearchMenu';
+import BottomNavigationFooter from './components/BottomNavigationFooter';
 
 class App extends Component {
     constructor(props){
@@ -11,14 +14,14 @@ class App extends Component {
 
     render() {
         return (
-            // Will need later
-            // <Switch>
-            //     <Route exact path="/" render={() => <Home />}/>
-            //     <Route path="/login" render={() => <Login />}/>
-            // </Switch>
-            <React.Fragment>
-                <LocationCardList/>
-            </React.Fragment>
+            <div>
+                <ButtonAppBar menuTitle="Adventure Advisor" menuSubTitle="The Travel Plan Engine"/>
+                <Switch>
+                    <Route path="/tour" exact render={() => <div/>}/>
+                    <Route render={() => <LocationSearchMenu/>}/>
+                </Switch>
+                <Route path="/" render={() => <BottomNavigationFooter/>}/>
+            </div>
         );
     }
 }
