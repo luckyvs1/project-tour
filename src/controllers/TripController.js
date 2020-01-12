@@ -79,33 +79,31 @@ export default class TripController {
         }
         console.log(output)
 
-        let custom_order = []
-        //custom_order.push({"lat": origin.split[","][0], "lng": origin.split[","][1]})
-        custom_order.push(origin)
-        for (let point of waypoint_order) {
+        // //custom_order.push({"lat": origin.split[","][0], "lng": origin.split[","][1]})
+        // for (let point of waypoint_order) {
 
-        // console.log(custom_order)
-            console.log("point" + point)
-            //custom_order.push(waypoints[{"lat": point[0], "lat": destination[1]}]);
-            custom_order.push(waypoints[point])
-        }
-        //custom_order.push({lat: destination.split[","][0], lng:destination.split[","][1]})
-        custom_order.push(destination)
+        // // console.log(custom_order)
+        //     console.log("point" + point)
+        //     //custom_order.push(waypoints[{"lat": point[0], "lat": destination[1]}]);
+        //     custom_order.push(waypoints[point])
+        // }
+        // //custom_order.push({lat: destination.split[","][0], lng:destination.split[","][1]})
+        // custom_order.push(destination)
 
-        let output = [];
-        const length = custom_order.length - 1;
-        let first;
-        let second;
-        for (let i in custom_order){
-	        if(i == 0 || i == length){
-                first = custom_order[i].split(",")[0];
-                second = custom_order[i].split(",")[1];
-                output[i] = {"lat": first, "lng": second}
-            } else {
-                output[i] = {"lat": custom_order[i][0], "lng": custom_order[i][1]}
-            }
-        }
-        console.log(output)
+        // let output = [];
+        // const length = custom_order.length - 1;
+        // let first;
+        // let second;
+        // for (let i in custom_order){
+	    //     if(i == 0 || i == length){
+        //         first = custom_order[i].split(",")[0];
+        //         second = custom_order[i].split(",")[1];
+        //         output[i] = {"lat": first, "lng": second}
+        //     } else {
+        //         output[i] = {"lat": custom_order[i][0], "lng": custom_order[i][1]}
+        //     }
+        // }
+        // console.log(output)
 
         legsArray.forEach(function(legs,i){
 
