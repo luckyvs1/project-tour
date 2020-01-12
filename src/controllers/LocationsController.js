@@ -7,9 +7,13 @@ export default class LocationsController {
 
         const helper = new LocationsHelper();
 
-        const startLocation = '8888 University Dr, Burnaby, BC';
-        const endLocation = '4700 Kingsway, Burnaby, BC ';
-        const interests = ['bar', 'wine', 'gaming'];
+        //const startLocation = '8888 University Dr, Burnaby, BC';
+        //const endLocation = '4700 Kingsway, Burnaby, BC';
+        //const interests = ['bar', 'wine', 'gaming'];
+
+        const startLocation = req.query.start
+        const endLocation = req.query.end
+        const interests = req.query.interests
         
         // google maps API
         const googleMaps = req.app.get('googleMaps')
