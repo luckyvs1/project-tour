@@ -9,6 +9,7 @@
         "@babel/preset-env": "latest",
         "@babel/preset-react": "latest",
         "@material-ui/core": "latest",
+        "@material-ui/icons": "^4.5.1",
         "axios": "^0.19.1",
         "babel-loader": "latest",
         "body-parser": "^1.19.0",
@@ -26,7 +27,7 @@
         "webpack-cli": "latest"
     },
     "scripts": {
-        "start": "webpack -w & nodemon --exec yarn babel-node -- server.js",
+        "start": "webpack -w & nodemon --exec babel-node -- server.js",
         "build": "webpack -w",
         "serve": "nodemon --ignore ./build --exec babel-node -- server.js",
         "production": "cross-env NODE_ENV=production npm start"
