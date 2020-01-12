@@ -3,13 +3,12 @@ import React, {Component} from 'react';
 // import Login from './components/Auth/Login';
 import { Switch, Route, withRouter } from "react-router-dom";
 import Icon from '@material-ui/core/Icon';
-import SearchIcon from '@material-ui/icons/Search';
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Box from '@material-ui/core/Box'
 
 import ButtonAppBar from './components/ButtonAppBar';
 import SearchBar from './components/SearchBar';
-import SearchIconPlusText from './components/SearchIconPlusText';
-
-
 
 class App extends Component {
     constructor(props){
@@ -18,11 +17,19 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <Box>
                 <ButtonAppBar menuTitle="Adventure Advisor" menuSubTitle="The Travel Plan Engine"/>
                 <br />
-                <SearchBar label="Search" question="Where should your tour start?"/>
-            </div>
+                <Box paddingX={10}>
+                    <Card>
+                        <CardContent>
+                            <div>
+                                <SearchBar label="Search" question="Where should your tour start?"/>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </Box>
+            </Box>
             // <Switch>
             //     <Route exact path="/" render={() => <Home />}/>
             //     <Route path="/login" render={() => <Login />}/>
