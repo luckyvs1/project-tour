@@ -84,7 +84,7 @@ export default class LocationsHelper {
             if (limit > 0){
                 if (i < limit){
                     if ((i > 0 && location != locations[i - 1]) || (i == 0) ){
-                        row.name = location.name;
+                        // row.name = location.name;
                         row.lat = location.geometry.location.lat;
                         row.lng = location.geometry.location.lng;
                         array.push(row)
@@ -95,7 +95,7 @@ export default class LocationsHelper {
                     return array;
                 }
             } else {
-                row.name = location.name;
+                // row.name = location.name;
                 row.lat = location.geometry.location.lat;
                 row.lng = location.geometry.location.lng;
                 array.push(row)
