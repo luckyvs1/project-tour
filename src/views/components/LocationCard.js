@@ -2,8 +2,9 @@ import React from 'react';
 import { Typography, Card, CardContent, CardMedia } from '@material-ui/core';
 import Image from 'material-ui-image'
 import unsplash from '../../endpoints/unsplash';
+import {Redirect, withRouter} from 'react-router-dom';
 
-class LocationListItem extends React.Component {
+class LocationCard extends React.Component {
     state = {
         image: ''
     }
@@ -21,9 +22,14 @@ class LocationListItem extends React.Component {
             });
     }
 
+    clickHandler = () => {
+        console.log('Location clicked!');
+        this.props.history.push('/tour/' + this.props.locationText);
+    }
+
     render() {
         return (
-            <Card variant="outlined" style={{width: '250px', height: '150px'}}>
+            <Card onClick={this.clickHandler} variant="outlined" style={{width: '250px', height: '150px', cursor: 'pointer'}}>
                 <CardMedia
                     children={<Image src={this.state.image} aspectRatio={3/2}></Image>}
                 />
@@ -32,4 +38,4 @@ class LocationListItem extends React.Component {
     }
 }
 
-export default LocationListItem;
+export default withRouter(LocationCard);
