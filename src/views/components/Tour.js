@@ -23,10 +23,17 @@ class Tour extends React.Component {
     }
 
     getTour = () => {
-        Axios.get('?start=' + this.props.startLocation +
+        this.setState({
+            flowPosition: 3
+        });
+
+        console.log(Axios.get('?start=' + this.props.match.params.location +
             '&end=' + this.state.endLocation +
-            '&interests=' + JSON.stringify((this.state.interests))
-        );
+            '&interests=' + JSON.stringify(this.state.interests)
+        ));
+        // .then(response => {
+        //     console.log('response');
+        // });
     }
 
     setEndLocation = (newEndLocation) => {
@@ -40,12 +47,6 @@ class Tour extends React.Component {
         this.setState({
             flowPosition: 2,
             interests: interests
-        });
-    }
-
-    getTour = () => {
-        this.setState({
-            flowPosition: 3
         });
     }
 
