@@ -27,7 +27,7 @@ class App extends Component {
             <div>
                 <ButtonAppBar menuTitle="Adventure Advisor" menuSubTitle="The Travel Plan Engine"/>
                 <Switch>
-                    <Route path="/tour/" render={() => <Tour/>}/>
+                    <Route path="/tour/:location" render={() => <Tour/>}/>
                     <Route render={() => <LocationSearchMenu/>}/>
                 </Switch>
                 <Route path="/" render={() => <BottomNavigationFooter/>}/>
