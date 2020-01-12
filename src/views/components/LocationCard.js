@@ -6,6 +6,7 @@ class LocationListItem extends React.Component {
     state = {
         image: ''
     }
+    
     componentDidMount() {
         if(this.state.image == '') {
             this.getImage();
@@ -15,25 +16,15 @@ class LocationListItem extends React.Component {
     getImage = () => {
         unsplash.get('/search/photos', {params: { query : this.props.locationText}})
             .then(response => {
-                console.log(response);
-                console.log(response.data.results[0].urls.regular);
                 this.setState({image: response.data.results[0].urls.regular});
             });
     }
 
     render() {
-        const img = (
-            <img
-                src={this.state.image}
-                >
-            </img>
-        );
-
         return (
-            
-            <Card variant="outlined" style={{width: '300px', height: '200px'}}>
+            <Card variant="outlined" style={{width: '250px', height: '150px'}}>
                 <CardMedia
-                    children={img}
+                    children={<img src={this.state.image}/>}
                     title="Paella dish"
                 />
             </Card>

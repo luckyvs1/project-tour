@@ -23,7 +23,7 @@ class LocationCardList extends React.Component {
             >
                 {
                     locations.map(locationName => (
-                        <LocationCard key={locationName} locationText={locationName}/>
+                        <LocationCard style={{padding: "10px 10px 10px 10px"}} key={locationName} locationText={locationName}/>
                     ))
                 }
             </Grid>
