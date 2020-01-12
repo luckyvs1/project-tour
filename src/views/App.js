@@ -15,6 +15,7 @@ import LocationSearchInput from './components/LocationSearchInput';
 import SearchBar from './components/SearchBar';
 import { Container } from '@material-ui/core';
 import ButtonAppBar from './components/ButtonAppBar';
+import Tour from './components/Tour';
 import LocationSearchMenu from './components/LocationSearchMenu';
 import BottomNavigationFooter from './components/BottomNavigationFooter';
 
@@ -26,7 +27,7 @@ class App extends Component {
             <div>
                 <ButtonAppBar menuTitle="Adventure Advisor" menuSubTitle="The Travel Plan Engine"/>
                 <Switch>
-                    <Route path="/tour" exact render={() => <div/>}/>
+                    <Route path="/tour/" render={() => <Tour/>}/>
                     <Route render={() => <LocationSearchMenu/>}/>
                 </Switch>
                 <Route path="/" render={() => <BottomNavigationFooter/>}/>

@@ -20,7 +20,7 @@ class BottomNavigationFooter extends React.Component {
   }
 
   checkInTour = () => {
-    if(this.state.inTour == false && this.props.location.pathname == '/tour'){
+    if(this.state.inTour == false && this.props.location.pathname.startsWith('/tour/')){
       this.setState({inTour: true})
     }
   }
