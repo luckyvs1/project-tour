@@ -14,8 +14,7 @@ import theme from './public/style/theme';
 //environment
 const ENV = process.env.ENV || "development";
 // Google API Key
-const KEY = process.env.GOOGLE_API_KEY || "development";
-
+const KEY = process.env.GOOGLE_API_KEY
 
 //middleware
 import bodyParser from "body-parser";
@@ -90,7 +89,9 @@ app.set('googleMaps', googleMaps)
 
 // auth route
 import auth from "./src/routes/auth"
+import trip from "./src/routes/trip"
 app.use("/auth", auth)
+app.use("/", trip)
 
 import locations from "./src/routes/locations"
 app.use("/", locations)
