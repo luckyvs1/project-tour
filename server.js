@@ -34,6 +34,7 @@ function renderFullPage(html, css) {
             </head>
             <body>
                 <script async src="build/bundle.js"></script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1S-yb3o62Z09WA4Xl_AxqvswRdW7Zv6A&libraries=places"></script>
                 <div id="root">${html}</div>
             </body>
         </html>

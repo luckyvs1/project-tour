@@ -9,29 +9,27 @@ class SearchBar extends React.Component {
 	onFormSubmit = (event) => {
         event.preventDefault();
         console.log('Term submitted: ' + this.state.term);
-		//this.props.onSubmit(this.state.term);
+		this.props.onSubmit(this.state.term);
     };
 
 	render() {
 		return (
-			<div>
-                <Container maxWidth="sm">
-                    <Typography variant="h5" align="center">
-                        {this.props.question}
-                    </Typography>
-                    <form onSubmit={this.onFormSubmit} className="ui form">
-                            <TextField 
-                                id="outlined-full-width" 
-                                label={this.props.label}
-                                fullWidth
-                                margin="normal"
-                                variant="outlined"
-                                value={this.state.term}
-                                onChange={(e) => this.setState({ term: e.target.value })} 
-                            />
-                    </form>
-                </Container>
-			</div>
+            <Container maxWidth="sm">
+                <Typography variant="h5" align="center">
+                    {this.props.question}
+                </Typography>
+                <form onSubmit={this.onFormSubmit} className="ui form">
+                        <TextField 
+                            id="outlined-full-width" 
+                            label={this.props.label}
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            value={this.state.term}
+                            onChange={(e) => this.setState({ term: e.target.value })} 
+                        />
+                </form>
+            </Container>
 		);
 	}
 }
