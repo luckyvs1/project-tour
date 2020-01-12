@@ -1,4 +1,6 @@
 const { decode } = require('@pirxpilot/google-polyline')
+var polyline = require('@mapbox/polyline');
+
 
 export default class TripController {
     async trip(req, res) {
@@ -50,17 +52,19 @@ export default class TripController {
         const legsArray = directions.routes[0].legs;
         // console.log(legsArray)
 
-        // const waypoint_order = directions.routes[0].waypoint_order
-        // let custom_order = []
-        // custom_order.push({"lat": origin.split[","][0], "lng": origin.split[","][1]})
-        // for (let point of waypoint_order) {
+        const waypoint_order = directions.routes[0].waypoint_order
+        let custom_order = []
+        //custom_order.push({"lat": origin.split[","][0], "lng": origin.split[","][1]})
+        custom_order.push(origin)
+        for (let point of waypoint_order) {
 
-        //     console.log("point" + point)
-        //     custom_order.push(waypoints[{"lat": point[0], "lat": destination[1]}]);
-        // }
-        // custom_order.push({lat: destination.split[","][0], lng:destination.split[","][1]})
-
-        // console.log(custom_order)
+            console.log("point" + point)
+            //custom_order.push(waypoints[{"lat": point[0], "lat": destination[1]}]);
+            custom_order.push(waypoints[point])
+        }
+        //custom_order.push({lat: destination.split[","][0], lng:destination.split[","][1]})
+        custom_order.push(destination)
+        console.log(custom_order)
 
         legsArray.forEach(function(legs,i){
 
@@ -77,8 +81,17 @@ export default class TripController {
         });
 
         const encodedPolyline = directions.routes[0].overview_polyline.points
-        const latLonArray = decode(encodedPolyline)
-        console.log(latLonArray)
+        //const latLonArray = decode(encodedPolyline)
+        const latLonArray = polyline.decode(encodedPolyline);
+
+        let latLonObj = []
+        for (let latlon of latLonArray) {
+            latLonObj.push({
+                lat: latlon[0],
+                ln: latlon[1]
+            })
+        }
+        console.log(latLonObj)
 
         let totalDurationInSecs = 0
 
