@@ -34,6 +34,7 @@ function renderFullPage(html, css) {
             </head>
             <body>
                 <script async src="build/bundle.js"></script>
+                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places"></script>
                 <div id="root">${html}</div>
             </body>
         </html>
@@ -80,6 +81,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // auth route
 import auth from "./src/routes/auth"
 app.use("/auth", auth)
+
+import locations from "./src/routes/locations"
+app.use("/", locations)
 
 // This is fired every time the server-side receives a request.
 app.use(handleRender);
