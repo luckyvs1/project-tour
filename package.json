@@ -9,6 +9,7 @@
         "@babel/preset-env": "latest",
         "@babel/preset-react": "latest",
         "@material-ui/core": "latest",
+        "@material-ui/icons": "^4.5.1",
         "axios": "^0.19.1",
         "babel-loader": "latest",
         "body-parser": "^1.19.0",

@@ -31,7 +31,7 @@ class LocationListItem extends React.Component {
 
         return (
             
-            <Card variant="outlined" style={{width: '250px', height: '150px'}}>
+            <Card variant="outlined" style={{width: '300px', height: '200px'}}>
                 <CardMedia
                     children={img}
                     title="Paella dish"
