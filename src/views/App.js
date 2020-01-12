@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 // import Home from './components/Home';
 // import Login from './components/Auth/Login';
 import { Switch, Route, withRouter } from "react-router-dom";
+import { withScriptjs } from 'react-google-maps';
 import ButtonAppBar from './components/ButtonAppBar';
 import LocationSearchMenu from './components/LocationSearchMenu';
 import BottomNavigationFooter from './components/BottomNavigationFooter';
