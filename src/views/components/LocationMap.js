@@ -24,6 +24,7 @@ const LocationMap = compose(
   >
       <Polyline path={[{ lat: -34.397, lng: 150.644 }, { lat: -35.397, lng: 151.644 }]}/>
     {props.isMarkerShown && <Marker position={defaultCenter} onClick={props.onMarkerClick} />}
+    {props.endMarkerCoords ? <Marker label="End" key={props.endMarkerCoords.lat + props.endMarkerCoords.lnd} position={props.endMarkerCoords}/> : null}
     {props.markers.map((marker) => {
         return <Marker key={marker} position={marker}></Marker>
     })}

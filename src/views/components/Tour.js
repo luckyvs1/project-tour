@@ -19,7 +19,12 @@ class Tour extends React.Component {
         markers: [],
         startMarker: null,
         selectedMarkers: [],
-        polyLines: []
+        polyLines: [],
+        interestsLoading: false,
+        endMarkerCoords: {
+            lat: null,
+            lng: null
+        }
     }
 
     getTheTour = () => {
@@ -29,16 +34,26 @@ class Tour extends React.Component {
     }
 
     setEndLocation = (newEndLocation) => {
-        this.setState({
-            flowPosition: 1,
-            endLocation: newEndLocation
-        });
+        geocodeByAddress(newEndLocation)
+            .then(results => getLatLng(results[0]))
+            .then(latLng => {
+                console.log('GOT MARKER!');
+                this.setState({endMarkerCoords: latLng})
+
+                this.setState({
+                    flowPosition: 1,
+                    endLocation: newEndLocation
+                });
+            })
+            .catch(error => console.error('GETLATLANG ERROR', error));
     }
 
     setInterests = (interests) => {
         this.setState({
             flowPosition: 2,
+            interestsLoading: true
         });
+        console.log(this.state.interestsLoading);
         this.getMarkers(interests);
     }
 
@@ -52,7 +67,7 @@ class Tour extends React.Component {
         ).then(response => {
             console.log('good resp');
             console.log('response', response);
-            this.setState({markers: response.data});
+            this.setState({markers: response.data, interestsLoading: false});
         }).catch(error => console.log(error));
     }
 
@@ -73,7 +88,7 @@ class Tour extends React.Component {
         } else if (this.state.flowPosition === 1) {
             CurrentQuestion = <InterestsList doFinish={this.setInterests}/>
         } else if (this.state.flowPosition == 2) {
-            CurrentQuestion = <MarkerSelect doFinish={this.getTheTour}/>
+            CurrentQuestion = <MarkerSelect interestsLoading={this.state.interestsLoading} doFinish={this.getTheTour}/>
         } else if (this.state.flowPosition == 3) {
             CurrentQuestion = <Container align="center"><Typography variant="h5">Have fun!</Typography></Container>;
         }
@@ -84,7 +99,9 @@ class Tour extends React.Component {
             <PageWrapper>
                 {CurrentQuestion}
                 <br/>
-                {this.state.startMarker != null ? <LocationMap 
+                {this.state.startMarker != null ? <LocationMap
+                    endMarkerCoords={this.state.endMarkerCoords}
+                    interestsLoading={this.state.interestsLoading}
                     isMarkerShown
                     loadingElement={<div style={{ height: `100%` }} />}
                     containerElement={<div style={{ height: `400px` }} />}
