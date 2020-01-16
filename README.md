@@ -1,22 +1,23 @@
-# Server Rendering example
+# TravelMix
 
 ## How to use
 
-Download the example [or clone the repo](https://github.com/mui-org/material-ui):
-
-```sh
-curl https://codeload.github.com/mui-org/material-ui/tar.gz/master | tar -xz --strip=2  material-ui-master/examples/ssr
-cd ssr
-```
-
-Install it and run:
+Install it and run (for backend need a .env file with the Google API key labelled `GOOGLE_API_KEY`):
 
 ```sh
 npm install
 npm run start
 ```
 
-## The idea behind the example
+## API Key setup
 
-This is the reference implementation of the [Server Rendering tutorial](https://material-ui.com/guides/server-rendering/).
-# project-tour
+### Backend
+- For backend calls need a Google API key setup in a .env file the labelled `GOOGLE_API_KEY`
+- Currently requires additional config for Knex.js (to remove to simplify setup)
+
+### Frontend
+- Currently the API key is hardcoded (open issue to replace it using an environment parameter instead)
+
+## Hackathon Devpost
+
+https://devpost.com/software/project-tour
