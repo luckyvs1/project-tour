@@ -17,7 +17,7 @@
         "cross-env": "latest",
         "dotenv": "^8.2.0",
         "express": "latest",
-        "knex": "^0.20.7",
+        "knex": "^2.4.0",
         "material-ui-image": "^3.2.2",
         "nodemon": "latest",
         "npm-run-all": "latest",
